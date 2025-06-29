@@ -1,3 +1,4 @@
+
 document.addEventListener('DOMContentLoaded', () => {
   const registerForm = document.getElementById('registerForm');
   const loginForm = document.getElementById('loginForm');
@@ -6,9 +7,9 @@ document.addEventListener('DOMContentLoaded', () => {
     registerForm.addEventListener('submit', (e) => {
       e.preventDefault();
 
-      const nombre = document.getElementById('nombre').value;
-      const email = document.getElementById('email').value;
-      const password = document.getElementById('password').value;
+      const nombre = document.getElementById('nombre').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value.trim();
 
       let usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
 
@@ -30,8 +31,8 @@ document.addEventListener('DOMContentLoaded', () => {
     loginForm.addEventListener('submit', (e) => {
       e.preventDefault();
 
-      const email = document.getElementById('email').value;
-      const password = document.getElementById('password').value;
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value.trim();
 
       let usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
       const usuario = usuarios.find(user => user.email === email && user.password === password);
