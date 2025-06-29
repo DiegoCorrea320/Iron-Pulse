@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Iron Pulse - Dashboard</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Hola, <span id="usuarioNombre">Usuario</span> 👋 Bienvenido a Iron Pulse!</h1>
+
+    <section>
+      <h2>Selecciona tu tipo de rutina:</h2>
+      <ul>
+        <li><button onclick="seleccionarRutina('Fuerza')">Fuerza</button></li>
+        <li><button onclick="seleccionarRutina('Hipertrofia')">Hipertrofia</button></li>
+        <li><button onclick="seleccionarRutina('Cardio')">Cardio</button></li>
+        <li><button onclick="seleccionarRutina('Resistencia')">Resistencia</button></li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Registrar Peso de Hoy:</h2>
+      <input type="number" id="peso" placeholder="Peso levantado (kg)" />
+      <button onclick="guardarPeso()">Guardar Progreso</button>
+    </section>
+
+    <section>
+      <h2>Historial y Estadísticas:</h2>
+      <div id="historialPesos"></div>
+      <canvas id="graficoProgreso" width="400" height="200"></canvas>
+    </section>
+
+    <section>
+      <h2>Motivación del Día 💪:</h2>
+      <p id="mensajeMo
