@@ -6,12 +6,10 @@ document.addEventListener('DOMContentLoaded', () => {
     return;
   }
 
-  // Mostrar nombre del usuario
   document.getElementById('usuarioNombre').textContent = usuarioActivo.nombre;
 
   let rutinaSeleccionada = null;
 
-  // Mostrar historial
   function mostrarHistorial() {
     const historial = JSON.parse(localStorage.getItem(`historial_${usuarioActivo.email}`)) || [];
     const historialDiv = document.getElementById('historialPesos');
@@ -29,11 +27,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     historialDiv.innerHTML = html;
 
-    // Actualizar gráfico
     actualizarGrafico(historial);
   }
 
-  // Guardar peso
   window.guardarPeso = function () {
     const pesoInput = document.getElementById('peso');
     const peso = parseFloat(pesoInput.value);
@@ -51,7 +47,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const fecha = new Date().toLocaleDateString();
 
-    // Verificar si ya hay registro para hoy y rutina
     const ultimoRegistro = historial.length > 0 ? historial[historial.length - 1] : null;
 
     let mensaje = '';
@@ -77,13 +72,12 @@ document.addEventListener('DOMContentLoaded', () => {
     mostrarMensaje(mensaje);
   };
 
-  // Seleccionar rutina
   window.seleccionarRutina = function (rutina) {
     rutinaSeleccionada = rutina;
     alert(`Has seleccionado la rutina: ${rutina}`);
+    mostrarHistorial(); // Actualizar gráfico según rutina seleccionada
   };
 
-  // Mostrar mensaje motivador con gracia
   function mostrarMensaje(texto) {
     const mensajeElem = document.getElementById('mensajeMotivador');
     const mensajesExtra = [
@@ -97,21 +91,17 @@ document.addEventListener('DOMContentLoaded', () => {
     mensajeElem.textContent = texto + " — " + aleatorio;
   }
 
-  // Cerrar sesión
   window.cerrarSesion = function () {
     localStorage.removeItem('usuarioActivo');
     window.location.href = 'login.html';
   };
 
-  // Gráfico con Chart.js
   let grafico = null;
   function actualizarGrafico(historial) {
     const ctx = document.getElementById('graficoProgreso').getContext('2d');
 
-    // Ordenar historial por fecha
     historial.sort((a,b) => new Date(a.fecha) - new Date(b.fecha));
 
-    // Filtrar por rutina seleccionada
     const filtrado = historial.filter(entry => entry.rutina === rutinaSeleccionada);
 
     if (grafico) {
@@ -142,7 +132,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Inicializar historial al cargar
   mostrarHistorial();
   mostrarMensaje('¡Vamos con todo hoy!');
 });
