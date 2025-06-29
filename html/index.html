@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Iron Pulse - Dashboard</title>
   <link rel="stylesheet" href="../css/styles.css" />
+  <link rel="manifest" href="../manifest.json" />
+  <meta name="theme-color" content="#ff8c00" />
 </head>
 <body>
   <div class="container">
@@ -34,4 +36,21 @@
 
     <section>
       <h2>Motivación del Día 💪:</h2>
-      <p id="mensajeMo
+      <p id="mensajeMotivador"></p>
+    </section>
+
+    <button onclick="cerrarSesion()">Cerrar Sesión</button>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="../js/dashboard.js"></script>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('../service-worker.js')
+        .then(() => console.log('Service Worker registrado'))
+        .catch(err => console.log('Error registrando Service Worker:', err));
+    }
+  </script>
+</body>
+</html>
